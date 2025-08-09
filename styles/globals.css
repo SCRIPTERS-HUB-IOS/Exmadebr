@@ -1,0 +1,204 @@
+/* globals.css - responsive, mobile-first, no Tailwind */
+
+/* Base / reset */
+:root{
+  --bg-dark:#070405;
+  --bg-red:#2b0000;
+  --accent-red:#ff1b1b;
+  --glass-alpha: 0.10;
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-blue: rgba(0,102,255,0.12);
+  --muted: rgba(255,255,255,0.65);
+  --card-radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body,#__next{height:100%}
+body{
+  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(180deg,var(--bg-dark), var(--bg-red) 80%);
+  color: #fff;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Top-level layout */
+.page-root{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+}
+
+/* Particles (canvas) inserted by tsparticles sits behind content automatically */
+
+/* central container */
+.container{
+  position:relative;
+  z-index: 5;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:28px 20px;
+  text-align:center;
+}
+
+/* logo */
+.logo{
+  font-size:36px;
+  color:var(--accent-red);
+  letter-spacing:2px;
+  text-shadow:0 0 16px rgba(255,27,27,0.6);
+  margin-bottom:20px;
+  font-weight:700;
+}
+
+/* controls row */
+.controls{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+/* Generic button */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 18px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.45);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover { transform: translateY(-6px) }
+.btn.primary {
+  background: linear-gradient(180deg, rgba(255,28,28,0.14), rgba(255,28,28,0.06));
+  border:1px solid rgba(255,28,28,0.28);
+  box-shadow: 0 8px 38px rgba(255,27,27,0.06), 0 0 18px rgba(255,27,27,0.06);
+}
+
+/* Discord glassy blue */
+.btn.discord{
+  background: var(--glass-blue);
+  border: 1px solid rgba(0,102,255,0.25);
+  color: #dff1ff;
+  text-shadow: 0 0 8px rgba(0,120,255,0.12);
+  padding: 8px 14px;
+}
+.discord-logo {
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:18px;
+  color: #aee0ff;
+  width:22px;height:22px;
+}
+
+/* small control panel */
+.panel{
+  margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  align-items:center;
+  width:100%;
+  max-width:420px;
+  padding:14px;
+  border-radius:12px;
+  background: rgba(0,0,0,0.25);
+  border:1px solid rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+}
+.label{font-size:13px;color:var(--muted)}
+.range{width:100%}
+.range::-webkit-slider-thumb{
+  -webkit-appearance:none;height:16px;width:16px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.35)
+}
+.color-row{display:flex;gap:12px;align-items:center}
+
+/* color dots */
+.color-dot{
+  width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,0.06);cursor:pointer;outline:none;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.color-dot.active{ transform:translateY(-4px); box-shadow:0 8px 28px rgba(0,0,0,0.4) }
+
+/* red / blue */
+.color-dot:nth-child(1){ background:#ff1b1b }
+.color-dot:nth-child(2){ background:#0055ff }
+
+/* small footer */
+.small-foot{ margin-top:14px;font-size:12px;color:rgba(255,255,255,0.5) }
+
+/* Methods page specific */
+.back{ position:absolute; left:18px; top:14px; color:rgba(255,255,255,0.8); text-decoration:none; z-index:6 }
+.methods-title{ margin-top:8vh; font-size:28px; color:var(--accent-red); text-shadow:0 0 12px rgba(255,27,27,0.45); margin-bottom:14px }
+
+/* method list single column */
+.method-list{
+  margin-top:14px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  width:100%;
+  max-width:520px;
+  padding:0 18px;
+  z-index:6;
+}
+
+/* numbered button style */
+.method-btn{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 18px;
+  border-radius:12px;
+  text-decoration:none;
+  color:#fff;
+  background: linear-gradient(180deg, rgba(255,16,16,0.06), rgba(255,16,16,0.02));
+  border:1px solid rgba(255,16,16,0.28);
+  box-shadow: 0 8px 40px rgba(255,27,27,0.06);
+  transition: transform .14s cubic-bezier(.2,.9,.3,1), box-shadow .14s ease;
+  font-weight:700;
+}
+.method-btn:hover{ transform: translateY(-6px) }
+
+/* number block */
+.method-btn .num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:36px;
+  height:36px;
+  border-radius:10px;
+  background: rgba(0,0,0,0.28);
+  border:1px solid rgba(255,255,255,0.04);
+  color:var(--accent-red);
+  font-weight:800;
+  box-shadow: 0 6px 22px rgba(255,27,27,0.06);
+}
+
+/* label text */
+.method-btn .label-txt{ flex:1; text-align:left }
+
+/* click-grow animation triggered by JS */
+.method-btn.clicked{
+  transform: scale(1.08);
+  box-shadow: 0 14px 54px rgba(255,27,27,0.12);
+}
+
+/* Responsive tweaks */
+@media (max-width:640px){
+  .logo{font-size:26px}
+  .btn{padding:10px 14px;font-size:14px}
+  .method-btn{padding:12px;border-radius:10px}
+  .method-btn .num{min-width:30px;height:30px}
+  .container{padding:20px}
+  .back{left:12px;top:12px}
+}
